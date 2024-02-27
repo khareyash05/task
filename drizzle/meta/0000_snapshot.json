@@ -1,5 +1,5 @@
 {
-  "id": "0dbabf7d-721c-4f56-98c6-3ba53eb3176e",
+  "id": "07a7fcf6-1c0b-495e-a89d-53efea06484a",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -10,9 +10,9 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
         },
         "name": {
           "name": "name",

@@ -15,12 +15,20 @@ export class ProductsController {
         return this.productService.insertProduct(productTitle,productDesc,productCost)
     }
 
+    @Get()
+    @Header('Content-Type','applications/json')
+    getAllProducts(){
+        return this.productService.getAllProducts()
+    }
+
     @Get(':id')
+    @Header('Content-Type','applications/json')
     getProduct(@Param('id') id:number){
         return this.productService.getProduct(id)
     }
 
     @Patch(':id')
+    @Header('Content-Type','applications/json')
     putProduct(
         @Param('id') id:number,
         @Body('name') productTitle:string,
@@ -31,6 +39,7 @@ export class ProductsController {
     }
 
     @Delete(':id')
+    @Header('Content-Type','applications/json')
     deleteProduct(@Param('id') id:number){
         return this.productService.deleteProduct(id)
     }

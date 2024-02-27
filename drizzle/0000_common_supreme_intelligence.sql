@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "product" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" integer,
 	"name" text,
 	"description" text,
 	"cost" text

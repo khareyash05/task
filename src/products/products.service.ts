@@ -4,7 +4,8 @@ import { db } from "src/db/conn";
 import { product } from "src/schema";
 // import { v4 as uuidv4 } from 'uuid';
 
-const id = Math.random()
+const id = Math.floor(Math.random() * 100);
+// const id = uuidv4()
 
 @Injectable()
 export class ProductsService{
@@ -16,8 +17,13 @@ export class ProductsService{
         ])
         return newProduct
     }
+
+    async getAllProducts(){
+        const products = await db.select().from(product);
+        return products
+    }
     async getProduct(id:number){
-        const existingProduct  = await db.select().from(product)
+        const existingProduct  = await db.select().from(product).where(eq(product.id,id));
         return existingProduct
     }
 
