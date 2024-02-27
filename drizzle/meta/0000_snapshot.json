@@ -1,5 +1,5 @@
 {
-  "id": "7f9d2d3b-1c00-43e0-8cec-b68b1d8aa74e",
+  "id": "0dbabf7d-721c-4f56-98c6-3ba53eb3176e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -11,7 +11,7 @@
         "id": {
           "name": "id",
           "type": "serial",
-          "primaryKey": false,
+          "primaryKey": true,
           "notNull": true
         },
         "name": {
@@ -29,18 +29,6 @@
         "cost": {
           "name": "cost",
           "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp",
           "primaryKey": false,
           "notNull": false
         }
