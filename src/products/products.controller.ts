@@ -10,7 +10,7 @@ export class ProductsController {
     addProduct(
         @Body('name') productTitle:string,
         @Body('description') productDesc:string,
-        @Body('cost') productCost :string
+        @Body('cost') productCost :number
     ) : any{
         return this.productService.insertProduct(productTitle,productDesc,productCost)
     }
@@ -23,24 +23,24 @@ export class ProductsController {
 
     @Get(':id')
     @Header('Content-Type','applications/json')
-    getProduct(@Param('id') id:number){
+    getProduct(@Param('id') id:string){
         return this.productService.getProduct(id)
     }
 
     @Patch(':id')
     @Header('Content-Type','applications/json')
     putProduct(
-        @Param('id') id:number,
+        @Param('id') id:string,
         @Body('name') productTitle:string,
         @Body('description') productDesc:string,
-        @Body('cost') productCost :string
+        @Body('cost') productCost :number
     ){
-        return this.productService.putProduct(id,productTitle,productDesc,productCost)
+        return this.productService.updateProduct(id,productTitle,productDesc,productCost)
     }
 
     @Delete(':id')
     @Header('Content-Type','applications/json')
-    deleteProduct(@Param('id') id:number){
+    deleteProduct(@Param('id') id:string){
         return this.productService.deleteProduct(id)
     }
 }
