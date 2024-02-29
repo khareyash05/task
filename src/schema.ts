@@ -6,3 +6,10 @@ export const product = pgTable('product', {
   description: text("description"),
   cost: integer("cost"),
 });
+
+export const user = pgTable('user',{
+  id: uuid('id').primaryKey(),
+  name: text("name"),
+  email: text("email"),
+  password: text("password"),
+})

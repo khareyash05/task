@@ -6,7 +6,7 @@ export class ProductsController {
     constructor(private readonly productService : ProductsService){}
 
     @Post()
-    @Header('Content-Type','applications/json')
+    @Header('Content-Type','application/json')
     addProduct(
         @Body('name') productTitle:string,
         @Body('description') productDesc:string,
@@ -16,19 +16,19 @@ export class ProductsController {
     }
 
     @Get()
-    @Header('Content-Type','applications/json')
+    @Header('Content-Type','application/json')
     getAllProducts(){
         return this.productService.getAllProducts()
     }
 
     @Get(':id')
-    @Header('Content-Type','applications/json')
+    @Header('Content-Type','application/json')
     getProduct(@Param('id') id:string){
-        return this.productService.getProduct(id)
+        return this.productService.getProductByID(id)
     }
 
     @Patch(':id')
-    @Header('Content-Type','applications/json')
+    @Header('Content-Type','application/json')
     putProduct(
         @Param('id') id:string,
         @Body('name') productTitle:string,

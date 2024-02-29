@@ -13,19 +13,19 @@ export class ProductsService{
         description:string,
         cost:number
     ){
-        const newProduct  = await db.insert(product).values([
+        await db.insert(product).values([
             {
                 id,name,description,cost
             }
         ])
-        return newProduct
+        return this.getProductByID(id)
     }
 
     async getAllProducts(){
         const products = await db.select().from(product);
         return products
     }
-    async getProduct(id:string){
+    async getProductByID(id:string){
         const existingProduct  = await db.select().from(product).where(eq(product.id,id));
         return existingProduct
     }
@@ -36,12 +36,12 @@ export class ProductsService{
         description?:string,
         cost?:number
     ){
-        const updateProduct = await db.update(product).set({name,description,cost}).where(eq(product.id,id));
-        return updateProduct
+        await db.update(product).set({name,description,cost}).where(eq(product.id,id));
+        return this.getProductByID(id)
     }   
     
     async deleteProduct(id:string){
-        const deletedProduct  = await db.delete(product).where(eq(product.id,id))
-        return deletedProduct
+        await db.delete(product).where(eq(product.id,id))
+        return `Deleted product with id ${id}`
     }
 }
