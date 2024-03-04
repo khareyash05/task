@@ -1,32 +1,37 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { eq } from "drizzle-orm";
-import { db } from "src/db/conn";
 import { product } from "src/schema";
 import { v4 as uuidv4 } from 'uuid';
-
-const id:string  = uuidv4()
+import * as schema from "../schema"
+import { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 
 @Injectable()
 export class ProductsService{
+    constructor(
+        @Inject('DB_DEV') private drizzleDB : PostgresJsDatabase<typeof schema>
+    ){}
     async insertProduct(
         name:string,
         description:string,
         cost:number
     ){
-        await db.insert(product).values([
+        const id:string  = uuidv4()
+        const res = await this.drizzleDB.insert(product).values(
             {
                 id,name,description,cost
             }
-        ])
-        return this.getProductByID(id)
+        ).returning()
+        return res;
     }
 
     async getAllProducts(){
-        const products = await db.select().from(product);
+        const products = await this.drizzleDB.query.product.findMany()
         return products
     }
     async getProductByID(id:string){
-        const existingProduct  = await db.select().from(product).where(eq(product.id,id));
+        const existingProduct  = await this.drizzleDB.query.product.findFirst({
+            where: eq(product.id,id)
+        })
         return existingProduct
     }
 
@@ -36,12 +41,12 @@ export class ProductsService{
         description?:string,
         cost?:number
     ){
-        await db.update(product).set({name,description,cost}).where(eq(product.id,id));
-        return this.getProductByID(id)
+        const res = await this.drizzleDB.update(product).set({name,description,cost}).where(eq(product.id,id)).returning();
+        return res
     }   
     
     async deleteProduct(id:string){
-        await db.delete(product).where(eq(product.id,id))
+        await this.drizzleDB.delete(product).where(eq(product.id,id))
         return `Deleted product with id ${id}`
     }
 }
