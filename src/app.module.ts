@@ -5,8 +5,8 @@ import { ProductsModule } from './products/products.module';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { jwtConstants } from './constants/jwtConstant';
 import { DrizzlePostgresModule } from '@knaadh/nestjs-drizzle-postgres';
-// import schema
 import * as schema from "./schema"
+import { CSVModule } from './sample/sample.module';
 
 require('dotenv').config()
 
@@ -19,7 +19,8 @@ require('dotenv').config()
         url: process.env.DATABASE_URL,
       },
       config: { schema: { ...schema } },
-    })
+    }),
+    CSVModule
   ],
   controllers: [AppController],
   providers: [AppService,JwtService],

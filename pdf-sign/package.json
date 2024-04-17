@@ -1,0 +1,18 @@
+{
+  "name": "pdf-sign",
+  "version": "1.0.0",
+  "description": "",
+  "main": "pdf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@signpdf/placeholder-plain": "^3.2.4",
+    "@signpdf/signer-p12": "^3.2.4",
+    "@signpdf/signpdf": "^3.2.4",
+    "node-forge": "^1.3.1"
+  }
+}

@@ -13,3 +13,11 @@ export const user = pgTable('user',{
   email: text("email"),
   password: text("password"),
 })
+
+export const sample = pgTable('sample',{
+  id: uuid('id').primaryKey(),
+  name:text("name"),
+  description: text("description"),
+  url:text("url"),
+  stars:integer("stars")
+})
