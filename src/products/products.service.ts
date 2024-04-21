@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { eq } from "drizzle-orm";
-import { db } from "src/db/conn";
-import { product } from "src/schema";
+import { db } from "../db/conn";
+import { product } from "../schema";
 import { v4 as uuidv4 } from 'uuid';
 
 const id:string  = uuidv4()
